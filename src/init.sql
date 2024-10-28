@@ -1,15 +1,12 @@
-CREATE TABLE IF NOT EXISTS schueler (
-    Nr INTEGER PRIMARY KEY,
-    Name TEXT NOT NULL,
-    Vorname TEXT,
-    Geschlecht TEXT,
-    GebDatum TEXT,
-    Strasse TEXT,
-    Hausnummer TEXT,
-    Plz TEXT,
-    Ort TEXT,
-    NotTelefon TEXT,
-    Telefon TEXT,
-    Essen TEXT,
-    Klasse TEXT
+CREATE TABLE IF NOT EXISTS adressen (
+    uid_nr INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    uid TEXT NOT NULL,
+    vorname TEXT NOT NULL,
+    nachname TEXT NOT NULL,
+    stadt TEXT,
+    plz TEXT,
+    strasse TEXT,
+    hausnummer TEXT,
+    telefon TEXT,
+    email TEXT
 );

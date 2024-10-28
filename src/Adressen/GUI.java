@@ -69,6 +69,8 @@ public class GUI extends javax.swing.JFrame
     {
         initComponents();
         //clear_txt();
+        
+        // TODO datenbank
     }
 
     @SuppressWarnings("unchecked")
@@ -388,8 +390,9 @@ public class GUI extends javax.swing.JFrame
             return;
         }
 
-        Adresse adresse = new Adresse(uid,
+        Adresse adresse = new Adresse(
                 uid_nr,
+                uid,
                 vorname,
                 nachname,
                 stadt,

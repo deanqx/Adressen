@@ -2,8 +2,8 @@ package Adressen;
 
 public class Adresse
 {
-    private String uid;
     private int uid_nr;
+    private String uid;
     private String vorname;
     private String nachname;
     private String stadt;
@@ -13,8 +13,9 @@ public class Adresse
     private String telefon;
     private String email;
 
-    public Adresse(String uid,
+    public Adresse(
             int uid_nr,
+            String uid,
             String vorname,
             String nachname,
             String stadt,
@@ -24,8 +25,8 @@ public class Adresse
             String telefon,
             String email)
     {
-        this.uid = uid;
         this.uid_nr = uid_nr;
+        this.uid = uid;
         this.vorname = vorname;
         this.nachname = nachname;
         this.stadt = stadt;
@@ -38,7 +39,7 @@ public class Adresse
     
     public static Adresse new_empty()
     {
-        return new Adresse("", 0, "", "", "", "", "", "", "", "");
+        return new Adresse(0, "", "", "", "", "", "", "", "", "");
     }
 
     public void setUid(String s)
