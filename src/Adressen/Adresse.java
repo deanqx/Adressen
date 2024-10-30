@@ -2,7 +2,7 @@ package Adressen;
 
 public class Adresse
 {
-    private int uid_nr;
+    private final int uid_nr;
     private String uid;
     private String vorname;
     private String nachname;

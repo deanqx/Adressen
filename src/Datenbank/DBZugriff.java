@@ -1,4 +1,4 @@
-package Temperaturerfassung;
+package Datenbank;
 
 
 //Alle Klassen zum Zugriff auf die JDBC-Schnittstelle liegen im folgendem Paket:

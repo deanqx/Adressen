@@ -7,6 +7,7 @@ package Adressen;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import Datenbank.DBZugriff;
 
 /**
  *
@@ -70,7 +71,11 @@ public class GUI extends javax.swing.JFrame
         initComponents();
         //clear_txt();
         
-        // TODO datenbank
+        var db = new DBZugriff("adressen.sqlite3");
+        db.oeffneDB();
+        db.aendern("""
+                   INSERT INTO tbl_adressen (uid_nr, uid, vorname, nachname, stadt, plz, strasse, hausnummer, telefon, email) VALUES();
+            """);
     }
 
     @SuppressWarnings("unchecked")
