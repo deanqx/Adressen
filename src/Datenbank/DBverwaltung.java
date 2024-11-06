@@ -4,25 +4,69 @@ import Adressen.Adresse;
 import java.sql.*;
 import java.util.*;
 
-public class DBverwaltung {
+public class DBverwaltung
+{
 
-   DBZugriff db;
+    DBZugriff db;
 
-   public DBverwaltung(String datenbank) {
-      db = new DBZugriff(datenbank);
-   }
-
-   /*
-    public String speichern(Messwert einMesswert)
+    public DBverwaltung(String datenbank)
     {
-        String sql="INSERT INTO messung (Datum,sensorName,wert) VALUES ('"
-                + einMesswert.getDatum() +"', '"
-                + einMesswert.getSensorName() +"', '"
-                + einMesswert.getMesswert() +"');";
-        // System.out.println(sql);
-        return db.aendern(sql);
+        db = new DBZugriff(datenbank);
     }
 
+    public String speichern(Adresse adresse)
+    {
+        String query
+            = String.format("INSERT INTO tbl_adressen (uid, vorname, nachname,"
+                + " stadt, plz, strasse, hausnummer, telefon, email)"
+                + " VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');",
+                adresse.getUid(),
+                adresse.getVorname(),
+                adresse.getNachname(),
+                adresse.getStadt(),
+                adresse.getPLZ(),
+                adresse.getStrasse(),
+                adresse.getHausnummer(),
+                adresse.getTelefon(),
+                adresse.getEmail());
+
+        System.out.println(query);
+
+        return db.aendern(query);
+    }
+
+    /**
+     * @return Alle adressen aus tbl_adressen
+     * @throws java.sql.SQLException wenn das Lesen Fehlgeschlagen ist
+     */
+    public ArrayList<Adresse> getAlleAdressen() throws SQLException
+    {
+        ArrayList<Adresse> adressen = new ArrayList<>();
+
+        String query = "SELECT * FROM tbl_adressen;";
+        ResultSet rs = db.lesen(query);
+
+        while (rs.next())
+        {
+            Adresse adresse = new Adresse(
+                rs.getInt("uid_nr"),
+                rs.getString("uid"),
+                rs.getString("vorname"),
+                rs.getString("nachname"),
+                rs.getString("stadt"),
+                rs.getString("plz"),
+                rs.getString("strasse"),
+                rs.getString("hausnummer"),
+                rs.getString("telefon"),
+                rs.getString("email")
+            );
+
+            adressen.add(adresse);
+        }
+
+        return adressen;
+    }
+    /*
     public String loeschen(Messwert einMesswert)
     {
         String sql ="DELETE FROM messung WHERE id = '"
@@ -61,7 +105,7 @@ public class DBverwaltung {
             ResultSet rs = db.lesen("Select * FROM Literaturverzeichnis;");
             while (rs.next())
             {
-    */
+     */
 
  /*
                 Buchverwaltung einBuch = new Buchverwaltung(rs.getInt("BuchID"),
@@ -90,7 +134,7 @@ public class DBverwaltung {
             ResultSet rs = db.lesen("Select * FROM buchformen;");
             while (rs.next())
             {
-    */
+     */
  /*
                 Buchformen eineBuchform = new Buchformen(rs.getInt("buchform_id"),
                         rs.getString("buchform"));
@@ -103,7 +147,7 @@ public class DBverwaltung {
             return null;
         }
     }
-    */
+     */
  /*
     public String loescheSpieler(Spieler zuloeschenderSpieler)
     {
@@ -122,7 +166,7 @@ public class DBverwaltung {
         System.out.println(sql);
         return db.aendern(sql);
     }
-    */
+     */
  /*
     public ArrayList<Kunden> getAlleKundenDaten()
     {
@@ -152,33 +196,4 @@ public class DBverwaltung {
         }
 
     } */
-   /**
-    * @return Alle adressen aus tbl_adressen
-    * @throws java.sql.SQLException wenn das Lesen Fehlgeschlagen ist
-    */
-   public ArrayList<Adresse> getAlleAdressen() throws SQLException {
-      ArrayList<Adresse> adressen = new ArrayList<>();
-
-      String query = "SELECT * FROM tbl_adressen;";
-      ResultSet rs = db.lesen(query);
-
-      while (rs.next()) {
-         Adresse adresse = new Adresse(
-                 rs.getInt("uid_nr"),
-                 rs.getString("uid"),
-                 rs.getString("vorname"),
-                 rs.getString("nachname"),
-                 rs.getString("stadt"),
-                 rs.getString("plz"),
-                 rs.getString("strasse"),
-                 rs.getString("hausnummer"),
-                 rs.getString("telefon"),
-                 rs.getString("email")
-         );
-
-         adressen.add(adresse);
-      }
-
-      return adressen;
-   }
 }

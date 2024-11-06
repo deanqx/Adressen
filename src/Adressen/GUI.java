@@ -14,72 +14,82 @@ import java.sql.SQLException;
  *
  * @author JCSBK-User
  */
-public class GUI extends javax.swing.JFrame {
+public class GUI extends javax.swing.JFrame
+{
 
-   ArrayList<Adresse> adressen = new ArrayList<Adresse>();
+    ArrayList<Adresse> adressen = new ArrayList<Adresse>();
 
-   private void clear_txt() {
-      txtHausnummer.setText("");
-      txtNachname.setText("");
-      txtPLZ.setText("");
-      txtStadt.setText("");
-      txtStrasse.setText("");
-      txtTelefon.setText("");
-      txtVorname.setText("");
-      txtUid.setText("");
-      txtUid_nr.setText("");
-      txtEmail.setText("");
-   }
+    private void clear_txt()
+    {
+        txtHausnummer.setText("");
+        txtNachname.setText("");
+        txtPLZ.setText("");
+        txtStadt.setText("");
+        txtStrasse.setText("");
+        txtTelefon.setText("");
+        txtVorname.setText("");
+        txtUid.setText("");
+        txtUid_nr.setText("");
+        txtEmail.setText("");
+    }
 
-   private void load_display_selector() {
-      this.fDisplay_cmbSelector.removeAllItems();
-      this.fDisplay_cmbSelector.addItem("-");
+    private void load_display_combobox()
+    {
+        DBverwaltung db_verwaltung = new DBverwaltung("adressen.sqlite");
 
-      for (Adresse a : adressen) {
-         this.fDisplay_cmbSelector.addItem(a.getVorname() + ", " + a.getNachname());
-      }
-   }
+        try
+        {
+            adressen = db_verwaltung.getAlleAdressen();
 
-   private void set_display_txt(Adresse a) {
-      this.fDisplay_txtUid.setText(a.getUid());
-      this.fDisplay_txtUid_nr.setText("" + a.getUid_nr());
-      this.fDisplay_txtStrasse.setText(a.getStrasse());
-      this.fDisplay_txtStadt.setText(a.getStadt());
-      this.fDisplay_txtPLZ.setText(a.getPLZ());
-      this.fDisplay_txtHausnummer.setText(a.getHausnummer());
-      this.fDisplay_txtTelefon.setText(a.getTelefon());
-      this.fDisplay_txtEmail.setText(a.getEmail());
-   }
+            for (Adresse it : adressen)
+            {
+                System.out.println(it);
+            }
+        } catch (SQLException e)
+        {
+            System.out.println(e);
+        }
 
-   private void clear_display_txt() {
-      this.fDisplay_txtUid.setText("");
-      this.fDisplay_txtUid_nr.setText("");
-      this.fDisplay_txtStrasse.setText("");
-      this.fDisplay_txtStadt.setText("");
-      this.fDisplay_txtPLZ.setText("");
-      this.fDisplay_txtHausnummer.setText("");
-      this.fDisplay_txtTelefon.setText("");
-      this.fDisplay_txtEmail.setText("");
-   }
+        this.fDisplay_cmbSelector.removeAllItems();
+        this.fDisplay_cmbSelector.addItem("-");
 
-   public GUI() {
-      // initComponents();
-      //clear_txt();
+        for (Adresse a : adressen)
+        {
+            this.fDisplay_cmbSelector.addItem(a.getVorname() + ", " + a.getNachname());
+        }
+    }
 
-      DBverwaltung db_verwaltung = new DBverwaltung("adressen.sqlite");
+    private void set_display_txt(Adresse a)
+    {
+        this.fDisplay_txtUid.setText(a.getUid());
+        this.fDisplay_txtUid_nr.setText("" + a.getUid_nr());
+        this.fDisplay_txtStrasse.setText(a.getStrasse());
+        this.fDisplay_txtStadt.setText(a.getStadt());
+        this.fDisplay_txtPLZ.setText(a.getPLZ());
+        this.fDisplay_txtHausnummer.setText(a.getHausnummer());
+        this.fDisplay_txtTelefon.setText(a.getTelefon());
+        this.fDisplay_txtEmail.setText(a.getEmail());
+    }
 
-      try {
-         ArrayList<Adresse> adressen = db_verwaltung.getAlleAdressen();
+    private void clear_display_txt()
+    {
+        this.fDisplay_txtUid.setText("");
+        this.fDisplay_txtUid_nr.setText("");
+        this.fDisplay_txtStrasse.setText("");
+        this.fDisplay_txtStadt.setText("");
+        this.fDisplay_txtPLZ.setText("");
+        this.fDisplay_txtHausnummer.setText("");
+        this.fDisplay_txtTelefon.setText("");
+        this.fDisplay_txtEmail.setText("");
+    }
 
-         for (Adresse it : adressen) {
-            System.out.println(it);
-         }
-      } catch (SQLException e) {
-         System.out.println(e);
-      }
-   }
+    public GUI()
+    {
+        initComponents();
+        //clear_txt();
+    }
 
-   @SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents()
     {
@@ -130,8 +140,7 @@ public class GUI extends javax.swing.JFrame {
         btnClear = new javax.swing.JButton();
         btnDisplay = new javax.swing.JButton();
 
-        fDisplay.setMinimumSize(new java.awt.Dimension(535, 400));
-        fDisplay.setPreferredSize(new java.awt.Dimension(535, 400));
+        fDisplay.setMinimumSize(new java.awt.Dimension(540, 430));
         fDisplay.setResizable(false);
         fDisplay.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -358,121 +367,141 @@ public class GUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBeendenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBeendenActionPerformed
-      if (JOptionPane.showConfirmDialog(this, "Wollen Sie wirklich beenden?",
-              "Warnung", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-         System.exit(0);
-      }
+        if (JOptionPane.showConfirmDialog(this, "Wollen Sie wirklich beenden?",
+            "Warnung", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+        {
+            System.exit(0);
+        }
     }//GEN-LAST:event_btnBeendenActionPerformed
 
     private void btnSpeichernActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnSpeichernActionPerformed
     {//GEN-HEADEREND:event_btnSpeichernActionPerformed
-      String uid = txtUid.getText();
-      int uid_nr;
-      String vorname = txtVorname.getText();
-      String nachname = txtNachname.getText();
-      String stadt = txtStadt.getText();
-      String plz = txtPLZ.getText();
-      String strasse = txtStrasse.getText();
-      String hausnummer = txtHausnummer.getText();
-      String telefon = txtTelefon.getText();
-      String email = txtEmail.getText();
+        String uid = txtUid.getText();
+        int uid_nr;
+        String vorname = txtVorname.getText();
+        String nachname = txtNachname.getText();
+        String stadt = txtStadt.getText();
+        String plz = txtPLZ.getText();
+        String strasse = txtStrasse.getText();
+        String hausnummer = txtHausnummer.getText();
+        String telefon = txtTelefon.getText();
+        String email = txtEmail.getText();
 
-      if (uid.isBlank() || vorname.isBlank() || nachname.isBlank()
-              || stadt.isBlank() || strasse.isBlank() || telefon.isBlank() || email.isBlank()) {
-         JOptionPane.showMessageDialog(this,
-                 "Es wurde nicht in jedes Feld etwas eingetragen!");
-         return;
-      }
+        if (uid.isBlank() || vorname.isBlank() || nachname.isBlank()
+            || stadt.isBlank() || strasse.isBlank() || telefon.isBlank() || email.isBlank())
+        {
+            JOptionPane.showMessageDialog(this,
+                "Es wurde nicht in jedes Feld etwas eingetragen!");
+            return;
+        }
 
-      try {
-         uid_nr = Integer.parseInt(txtUid_nr.getText());
-      } catch (NumberFormatException e) {
-         JOptionPane.showMessageDialog(this,
-                 "Es wurde Text in Zahlenfelder eingetragen!");
-         return;
-      }
+        try
+        {
+            uid_nr = Integer.parseInt(txtUid_nr.getText());
+        } catch (NumberFormatException e)
+        {
+            JOptionPane.showMessageDialog(this,
+                "Es wurde Text in Zahlenfelder eingetragen!");
+            return;
+        }
 
-      Adresse adresse = new Adresse(
-              uid_nr,
-              uid,
-              vorname,
-              nachname,
-              stadt,
-              plz,
-              strasse,
-              hausnummer,
-              telefon,
-              email);
+        Adresse adresse = new Adresse(
+            uid_nr,
+            uid,
+            vorname,
+            nachname,
+            stadt,
+            plz,
+            strasse,
+            hausnummer,
+            telefon,
+            email);
 
-      System.out.println(adresse);
-      adressen.add(adresse);
+        System.out.println(adresse);
+
+        DBverwaltung db_verwaltung = new DBverwaltung("adressen.sqlite");
+        db_verwaltung.speichern(adresse);
+
+        load_display_combobox();
     }//GEN-LAST:event_btnSpeichernActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnClearActionPerformed
     {//GEN-HEADEREND:event_btnClearActionPerformed
-      clear_txt();
+        clear_txt();
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnDisplayActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnDisplayActionPerformed
     {//GEN-HEADEREND:event_btnDisplayActionPerformed
-      load_display_selector();
-      fDisplay.setVisible(true);
+        load_display_combobox();
+        fDisplay.setVisible(true);
     }//GEN-LAST:event_btnDisplayActionPerformed
 
     private void fDisplay_btnCloseActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_fDisplay_btnCloseActionPerformed
     {//GEN-HEADEREND:event_fDisplay_btnCloseActionPerformed
-      fDisplay.dispose();
+        fDisplay.dispose();
     }//GEN-LAST:event_fDisplay_btnCloseActionPerformed
 
     private void fDisplay_cmbSelectorActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_fDisplay_cmbSelectorActionPerformed
     {//GEN-HEADEREND:event_fDisplay_cmbSelectorActionPerformed
-      int index = this.fDisplay_cmbSelector.getSelectedIndex() - 1;
+        int index = this.fDisplay_cmbSelector.getSelectedIndex() - 1;
 
-      if (index == -1) {
-         clear_display_txt();
-      }
+        if (index == -1)
+        {
+            clear_display_txt();
+        }
 
-      if (index < 0) {
-         return;
-      }
+        if (index < 0)
+        {
+            return;
+        }
 
-      set_display_txt(adressen.get(index));
+        set_display_txt(adressen.get(index));
     }//GEN-LAST:event_fDisplay_cmbSelectorActionPerformed
 
-   /**
-    * @param args the command line arguments
-    */
-   public static void main(String args[]) {
-      /* Set the Nimbus look and feel */
-      //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-      /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[])
+    {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-       */
-      try {
-         for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-            if ("Nimbus".equals(info.getName())) {
-               javax.swing.UIManager.setLookAndFeel(info.getClassName());
-               break;
+         */
+        try
+        {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
+            {
+                if ("Nimbus".equals(info.getName()))
+                {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
             }
-         }
-      } catch (ClassNotFoundException ex) {
-         java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-      } catch (InstantiationException ex) {
-         java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-      } catch (IllegalAccessException ex) {
-         java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-      } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-         java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-      }
-      //</editor-fold>
+        } catch (ClassNotFoundException ex)
+        {
+            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex)
+        {
+            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex)
+        {
+            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex)
+        {
+            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
 
-      /* Create and display the form */
-      java.awt.EventQueue.invokeLater(new Runnable() {
-         public void run() {
-            new GUI().setVisible(true);
-         }
-      });
-   }
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable()
+        {
+            public void run()
+            {
+                new GUI().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBeenden;
